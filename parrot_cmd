@@ -27,5 +27,36 @@ Latitude and longitude are in decimal degrees, and elevation is in meters.
 
 
 
+Attemp: 
+    parrot-ue4-carla -gps-json='{"lat_deg":40.4534506, "lng_deg":-80.0076661, "elevation":10.0}'
 
-parrot-ue4-forest -gps-json='{"lat_deg":40.4534506, "lng_deg":-80.0076661, "elevation":10.0}'
+    40.41557, -79.95038
+    sphinx "/opt/parrot-sphinx/usr/share/sphinx/drones/anafi.drone"::firmware="https://firmware.parrot.com/Versions/anafi/pc/%23latest/images/anafi-pc.ext2.zip"::pose="-79.95038 40.41557 0 0.000000 -0.000000 0.000000" 
+
+
+    parrot-ue4-sphx-tests -gps-json='{"lat_deg":40.41557, "lng_deg":-79.95038, "elevation":0.0}'
+
+    sphinx "/opt/parrot-sphinx/usr/share/sphinx/drones/anafi.drone"::firmware="https://firmware.parrot.com/Versions/anafi/pc/%23latest/images/anafi-pc.ext2.zip"
+
+
+
+
+Steeleagle:
+    env: 
+        sphinx "/opt/parrot-sphinx/usr/share/sphinx/drones/anafi.drone"::firmware="https://firmware.parrot.com/Versions/anafi/pc/%23latest/images/anafi-pc.ext2.zip"::pose="-79.95038 40.41557 0 0.000000 -0.000000 0.000000" 
+
+        parrot-ue4-carla -level=town_06 -gps-json='{"lat_deg":40.41557, "lng_deg":-79.95038, "elevation":0.0}'
+    Task:
+
+
+
+
+
+Task switch:
+
+    env:
+        sphinx "/opt/parrot-sphinx/usr/share/sphinx/drones/anafi.drone"::firmware="https://firmware.parrot.com/Versions/anafi/pc/%23latest/images/anafi-pc.ext2.zip"::pose="-79.95038 40.41557 0 0.000000 -0.000000 0.000000" 
+
+        parrot-ue4-carla -level=town_06 -gps-json='{"lat_deg":40.41557, "lng_deg":-79.95038, "elevation":0.0}'
+    Task:
+    

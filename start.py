@@ -5,9 +5,6 @@ from TaskController import TaskController
 
 if __name__ == "__main__":
     
-    # init the event queue
-    event_queue = queue.Queue()
-    
     # connect the drone
     args = {'ip': '10.202.0.1'}
     drone = ParrotAnafi(**args)
@@ -16,7 +13,7 @@ if __name__ == "__main__":
         print("connect the drone\n")
         
     # init the mission runner
-    mr = MissionRunner(drone, event_queue)
+    mr = MissionRunner(drone)
     print("init the mission runner\n")
     
     # context switch controller
@@ -28,4 +25,8 @@ if __name__ == "__main__":
     print("run the flight mission\n")
     tc.start()
     mr.start()
+    
+    
+    tc.join()
+    mr.join()
     

@@ -9,17 +9,20 @@ class DetectTask(Task):
         super().__init__(drone, task_id, **kwargs)
         self.event_queue = event_queue
         
-    def trigger_event(self):
-        self.event_queue.put((self.task_id,  "timeup"))
+    def trigger_event(self, event):
+        print(f"Detect Task: triggered event! {event}\n")
+        self.event_queue.put((self.task_id,  event))
 
     def run(self):
-        # construct the timer with 5 second
-        timer = threading.Timer(5.0, self.trigger_event)
-        # Start the timer
-        timer.start()
+        # triggered event
+        if (self.task_id == 1):
+            # construct the timer with 90 seconds
+            timer = threading.Timer(90, self.trigger_event, ["timeup"])
+            # Start the timer
+            timer.start()
         
         try:
-            print("Detect Task: hi this is detect task\n")
+            print(f"Detect Task: hi this is detect task {self.task_id}\n")
             coords = ast.literal_eval(self.kwargs["coords"])
             self.drone.setGimbalPose(0.0, float(self.kwargs["gimbal_pitch"]), 0.0)
             hover_delay = int(self.kwargs["hover_delay"])
@@ -27,9 +30,12 @@ class DetectTask(Task):
                 lng = dest["lng"]
                 lat = dest["lat"]
                 alt = dest["alt"]
+                print(f"Detect Task: move to {lat}, {lng}, {alt}")
                 self.drone.moveTo(lat, lng, alt)
-                print("Detect Task: move to\n")
                 time.sleep(hover_delay)
+                
+            print("Detect Task: Done\n")
+            self.trigger_event("done")
         except Exception as e:
             print(e)
 
