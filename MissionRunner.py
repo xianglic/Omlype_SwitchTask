@@ -73,11 +73,11 @@ class MissionRunner(FlightScript):
     def run(self):
         try:
             # define task
-            print("define the tasks\n")
+            print("MR: define the tasks\n")
             self.define_task(self.event_queue)
             
             # start mission
-            print("start the mission!\n")
+            print("MR: start the mission!\n")
             self.start_mission()
             
         except Exception as e:
