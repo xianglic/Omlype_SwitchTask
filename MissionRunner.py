@@ -25,8 +25,8 @@ class MissionRunner(FlightScript):
         kwargs["sample_rate"] = "2"
         kwargs["hover_delay"] = "5"
         kwargs["coords"] = "[{'lng': -79.9503613, 'lat': 40.4156274, 'alt': 50.0}, {'lng': -79.9503231, 'lat': 40.415537, 'alt': 50.0}, {'lng': -79.950185, 'lat': 40.415561, 'alt': 50.0}, {'lng': -79.9502218, 'lat': 40.4156524, 'alt': 50.0}, {'lng': -79.9503613, 'lat': 40.4156274, 'alt': 50.0}]"
-        self.t1 = DetectTask(self.drone, 1, event_queue, **kwargs)
-        self.taskMap[1] = self.t1
+        self.t1 = DetectTask(self.drone, "t1", event_queue, **kwargs)
+        self.taskMap["t1"] = self.t1
 
     
         # TASK2
@@ -36,14 +36,14 @@ class MissionRunner(FlightScript):
         kwargs["sample_rate"] = "2"
         kwargs["hover_delay"] = "5"
         kwargs["coords"] = "[{'lng': -79.9504218, 'lat': 40.4155937, 'alt': 50.0}, {'lng': -79.9505123, 'lat': 40.4155293, 'alt': 50.0}, {'lng': -79.9503849, 'lat': 40.4155059, 'alt': 50.0}, {'lng': -79.9504218, 'lat': 40.4155937, 'alt': 50.0}]"
-        self.t2 = DetectTask(self.drone, 2, event_queue, **kwargs)
-        self.taskMap[2] = self.t2
+        self.t2 = DetectTask(self.drone, "t2", event_queue, **kwargs)
+        self.taskMap["t2"] = self.t2
     
     def transit_to(self, task_id):
         print(f"MR: transit to task with task_id: {task_id}, current_task_id: {self.curr_task_id}")
         self.set_current_task(task_id)
         self._kill()
-        if (task_id != 0):
+        if (task_id != "terminate"):
             self._push_task(self.taskMap[task_id])
             self._execLoop()
         else:

@@ -11,20 +11,20 @@ class TaskController(threading.Thread):
         self.event_queue = mr.event_queue
         
         self.transitMap = {
-            1: self.task_1_transit,
-            2: self.task_2_transit
+            "t1": self.task_1_transit,
+            "t2": self.task_2_transit
         }
         
     @staticmethod
     def task_1_transit(triggered_event):
         if (triggered_event == "timeup"):
-            return 2
+            return "t2"
         if (triggered_event == "done"):
-            return 0
+            return "terminate"
     @staticmethod
     def task_2_transit(triggered_event):
         if (triggered_event == "done"):
-            return 0
+            return "terminate"
         
     @staticmethod
     def default_transit(triggered_event):

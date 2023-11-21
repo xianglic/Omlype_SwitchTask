@@ -15,7 +15,7 @@ class DetectTask(Task):
 
     def run(self):
         # triggered event
-        if (self.task_id == 1):
+        if (self.task_id == "t1"):
             # construct the timer with 90 seconds
             timer = threading.Timer(90, self.trigger_event, ["timeup"])
             # Start the timer
