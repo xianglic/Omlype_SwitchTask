@@ -46,7 +46,7 @@ Attemp:
 
 Steeleagle:
     env: 
-        sphinx "/opt/parrot-sphinx/usr/share/sphinx/drones/anafi.drone"::firmware="https://firmware.parrot.com/Versions/anafi/pc/%23latest/images/anafi-pc.ext2.zip"::pose="-79.95038 40.41557 0 0.000000 -0.000000 0.000000" 
+        sphinx "/opt/parrot-sphinx/usr/share/sphinx/drones/anafi.drone"::firmware="https://firmware.parrot.com/Versions/anafi/pc/%23latest/images/anafi-pc.ext2.zip"::pose="-79.95038 40.41557 0 0 0 3.14159" 
 
         parrot-ue4-carla -level=town_06 -gps-json='{"lat_deg":40.41557, "lng_deg":-79.95038, "elevation":0.0}'
     Task:
@@ -58,8 +58,20 @@ Steeleagle:
 Task switch:
 
     env:
-        sphinx "/opt/parrot-sphinx/usr/share/sphinx/drones/anafi.drone"::firmware="https://firmware.parrot.com/Versions/anafi/pc/%23latest/images/anafi-pc.ext2.zip"::pose="-79.95038 40.41557 0 0.000000 -0.000000 0.000000" 
+        sphinx "/opt/parrot-sphinx/usr/share/sphinx/drones/anafi.drone"::firmware="https://firmware.parrot.com/Versions/anafi/pc/%23latest/images/anafi-pc.ext2.zip"
 
-        parrot-ue4-carla -level=town_06 -gps-json='{"lat_deg":40.41557, "lng_deg":-79.95038, "elevation":0.0}'
+        parrot-ue4-sphx-tests -level=main -list-paths
+        == Available Paths ===========================================
+        Path name : DefaultPath
+        Path name : LongPath
+        Path name : SquarePath
+        ==============================================================
+
+        parrot-ue4-sphx-tests -gps-json='{"lat_deg":40.4156235, "lng_deg":-79.9504726 , "elevation":1.5}' -ams-path="DefaultPath,Pickup:*" -ams-path=SquarePath,Jasper
+        
+        sphinx-cli param -m world actors pause false
     Task:
     
+
+
+

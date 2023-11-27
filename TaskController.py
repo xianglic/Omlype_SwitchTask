@@ -2,41 +2,39 @@ import threading
 
 
 class TaskController(threading.Thread):
-        
-    
+
+
     def __init__(self, mr):
         super().__init__()
         self.mr = mr
-        
         self.event_queue = mr.event_queue
-        
         self.transitMap = {
-            "t1": self.task_1_transit,
-            "t2": self.task_2_transit
+            "task1": self.task1_transit,
+            "task2": self.task2_transit,
+            "default": self.default_transit
         }
-        
+
     @staticmethod
-    def task_1_transit(triggered_event):
-        if (triggered_event == "timeup"):
-            return "t2"
+    def task1_transit(triggered_event):
+        if (triggered_event == "timeout"):
+            return "task2"
+
         if (triggered_event == "done"):
             return "terminate"
+
     @staticmethod
-    def task_2_transit(triggered_event):
+    def task2_transit(triggered_event):
         if (triggered_event == "done"):
             return "terminate"
-        
+
     @staticmethod
     def default_transit(triggered_event):
         print(f"no matched up transition, triggered event {triggered_event}\n", triggered_event)
-        
-        
     def next_task(self, triggered_event):
         current_task_id = self.mr.get_current_task()
         next_task_id  = self.transitMap.get(current_task_id, self.default_transit)(triggered_event)
         self.mr.transit_to(next_task_id)
         return next_task_id
-    
     def run(self):
         print("hi start the controller\n")
         # check the triggered event
@@ -52,7 +50,3 @@ class TaskController(threading.Thread):
                         print(f"Controller: the current task is done, terminate the controller \n")
                         break
 
-               
-                
-
-                
