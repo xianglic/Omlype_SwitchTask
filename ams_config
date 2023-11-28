@@ -1,0 +1,22 @@
+Paths:
+  - Name: 'MyAwesomePath'
+    SplinePoints:
+      - 1.85 -9.5 0.4 Walk 15
+      - 15.76 -10.10 0.4 Run 20
+      - 17.635 0.85 0.4 Stop 5
+      - 17.02 12.03 0.4 Run 20
+      - 3.03 14.92 0.4 Walk 15
+    ClosedLoop: true
+Tags:
+  - Name: 'MyAwesomeTag'
+    FilePath: '/path/to/MyAwesomeTag.png'
+    Width : 30
+    Height : 25
+    OffsetZ : 10
+  - Name: 'MyEvenMoreAwesomeTag'
+    FilePath: '/path/to/MyEvenMoreAwesomeTag.png'
+    Width : 50
+    Height : 30
+    OffsetX : 10
+    OffsetY : 5
+    OffsetZ : 20

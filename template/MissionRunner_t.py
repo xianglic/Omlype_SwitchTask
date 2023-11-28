@@ -63,6 +63,7 @@ class MissionRunner(FlightScript):
     def end_mission(self):
         print("MR: end mission, rth\n")
         self.drone.rth()
+        self.drone.land()
         
     def set_current_task(self, task_id):
         self.curr_task_id = task_id
