@@ -1,7 +1,7 @@
-import queue
-from MissionRunner import MissionRunner
-from ParrotAnafi import ParrotAnafi
-from TaskController import TaskController
+from tasks.MissionRunner import MissionRunner
+from tasks.TaskController import TaskController
+from dependencies.ParrotAnafi import ParrotAnafi
+
 
 if __name__ == "__main__":
     
